@@ -1,3 +1,7 @@
+CREATE DATABASE mydb;
+
+USE mydb;
+
 DROP TABLE IF EXISTS usersContact, usersAddress, users;
 
 CREATE TABLE users (
@@ -1545,3 +1549,40 @@ VALUES
   (491,"89992 E 15th St","Alliance","Box Butte","NE",69301),
   (5,"61556 W 20th Ave","Seattle","King","WA",98104),
   (433,"63 E Aurora Dr","Orlando","Orange","FL",32804);
+  
+  SELECT * FROM users
+  
+  DELIMITER //
+
+CREATE PROCEDURE CreateUser(
+    IN p_first_name VARCHAR(50),
+    IN p_last_name VARCHAR(50),
+    IN p_address VARCHAR(100),
+    IN p_city VARCHAR(50),
+    IN p_county VARCHAR(50),
+    IN p_state VARCHAR(50),
+    IN p_zip VARCHAR(50),
+    IN p_phone1 VARCHAR(50),
+    IN p_phone2 VARCHAR(50),
+    IN p_email VARCHAR(50)
+)
+BEGIN
+    DECLARE new_user_id INT;
+
+    -- Insert into users
+    INSERT INTO users (first_name, last_name)
+    VALUES (p_first_name, p_last_name);
+
+    -- Get the ID of the newly inserted user
+    SET new_user_id = LAST_INSERT_ID();
+
+    -- Insert into usersAddress
+    INSERT INTO usersAddress (user_id, address, city, county, state, zip)
+    VALUES (new_user_id, p_address, p_city, p_county, p_state, p_zip);
+
+    -- Insert into usersContact
+    INSERT INTO usersContact (user_id, phone1, phone2, email)
+    VALUES (new_user_id, p_phone1, p_phone2, p_email);
+END //
+
+DELIMITER ;

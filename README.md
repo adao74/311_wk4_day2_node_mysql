@@ -21,7 +21,7 @@ Finally, in MySQL Workbench, run the `initialize.sql` script that is included in
 
 ## Overview
 
-The routes/controllers and basic setup has been done for us. Our job is now to complete the queries in `controllers/users.js`. There are five different controller functions and the first one has been done for us. We should be able to see this by navigating to: http://localhost:4001/users/ 
+The routes/controllers and basic setup has been done for us. Our job is now to complete the queries in `controllers/users.js`. There are five different controller functions and the first one has been done for us. We should be able to see this by navigating to: http://localhost:4001/ 
 
 Keep in mind that your port (4001) may be different.
 
@@ -90,7 +90,7 @@ Write a SQL statement to DELETE FROM users WHERE first_name = req param first_na
 ### Create a full Query
 
 - In your `getAllUsers` return all fields of all users including the fields of `usersContact` & `usersAddress`
-- In your `createUser` be sure that a complete user is created inluding all fields in `usersContact` & `usersAddress`
+- In your `createUser` be sure that a complete user is created including all fields in `usersContact` & `usersAddress`
 
 ## Summary
 
